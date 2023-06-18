@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patio de Juegos</title>
+    <style>
+    .contenedor {
+      text-align: center;
+    }
+    .cuadro {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      margin: 20px;
+      border: 8px solid black; 
+    }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Welcome</h1>
+        {% if request.path == url_for('play') %}
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+        {% elif request.path == url_for('playx',x=x) %}
+            {% for i in range(0,x) %}
+                <div class="cuadro"></div>
+            {% endfor %}
+        {% elif request.path == url_for('playxcolor',x=x, color=color) %}
+            {% for i in range(0,x) %}
+                <div class="cuadro" style="background-color: {{ color }};"></div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
